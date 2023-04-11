@@ -1,19 +1,19 @@
-# Flex Table
+# Flex Text Table
 
 Fast and flexible Pyhon library for text tables.
 
-[![Unit tests](https://github.com/MarcinOrlowski/python-flex-table/actions/workflows/unittests.yml/badge.svg?branch=master)](https://github.com/MarcinOrlowski/python-flex-table/actions/workflows/unittests.yml)
-[![MD Lint](https://github.com/MarcinOrlowski/python-flex-table/actions/workflows/markdown.yml/badge.svg?branch=master)](https://github.com/MarcinOrlowski/python-flex-table/actions/workflows/markdown.yml)
-[![GitHub issues](https://img.shields.io/github/issues/MarcinOrlowski/python-flex-table.svg)](https://github.com/MarcinOrlowski/python-flex-table/issues)
+[![Unit tests](https://github.com/MarcinOrlowski/python-flex-text-table/actions/workflows/unittests.yml/badge.svg?branch=master)](https://github.com/MarcinOrlowski/python-flex-text-table/actions/workflows/unittests.yml)
+[![MD Lint](https://github.com/MarcinOrlowski/python-flex-text-table/actions/workflows/markdown.yml/badge.svg?branch=master)](https://github.com/MarcinOrlowski/python-flex-text-table/actions/workflows/markdown.yml)
+[![GitHub issues](https://img.shields.io/github/issues/MarcinOrlowski/python-flex-text-table.svg)](https://github.com/MarcinOrlowski/python-flex-text-table/issues)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-[![PyPI version](https://badge.fury.io/py/flex-table.svg)](https://badge.fury.io/py/flex-table)
-[![Downloads](https://img.shields.io/pypi/dm/flex-table)](https://pypi.org/project/flex-table/)
-[![Python Version](https://img.shields.io/pypi/pyversions/flex-table.svg)](https://pypi.org/project/flex-table/)
-[![Wheel](https://img.shields.io/pypi/wheel/flex-table.svg)](https://pypi.org/project/flex-table/)
-[![Format](https://img.shields.io/pypi/format/flex-table.svg)](https://pypi.org/project/flex-table/)
-[![Implementation](https://img.shields.io/pypi/implementation/flex-table.svg)](https://pypi.org/project/flex-table/)
-[![Status](https://img.shields.io/pypi/status/flex-table.svg)](https://pypi.org/project/flex-table/)
+[![PyPI version](https://badge.fury.io/py/flex-text-table.svg)](https://badge.fury.io/py/flex-text-table)
+[![Downloads](https://img.shields.io/pypi/dm/flex-table)](https://pypi.org/project/flex-text-table/)
+[![Python Version](https://img.shields.io/pypi/pyversions/flex-text-table.svg)](https://pypi.org/project/flex-text-table/)
+[![Wheel](https://img.shields.io/pypi/wheel/flex-text-table.svg)](https://pypi.org/project/flex-text-table/)
+[![Format](https://img.shields.io/pypi/format/flex-text-table.svg)](https://pypi.org/project/flex-text-table/)
+[![Implementation](https://img.shields.io/pypi/implementation/flex-text-table.svg)](https://pypi.org/project/flex-text-table/)
+[![Status](https://img.shields.io/pypi/status/flex-text-table.svg)](https://pypi.org/project/flex-text-table/)
 
 Library is also available as [PHP package](https://github.com/MarcinOrlowski/php-text-table).
 

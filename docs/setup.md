@@ -1,4 +1,4 @@
-# Flex Table
+# Flex Text Table
 
 Fast and flexible Python library for text tables.
 

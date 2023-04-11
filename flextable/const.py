@@ -1,10 +1,10 @@
 ####################################################################
 #
-# Flex Table
+# Flex Text Table
 # Fast and flexible Pyhon library for text tables.
 #
 # Copyright ©2023 Marcin Orlowski <mail [@] MarcinOrlowski.com>
-# https://github.com/MarcinOrlowski/python-flex-table/
+# https://github.com/MarcinOrlowski/python-flex-text-table/
 #
 ####################################################################
 
@@ -12,7 +12,7 @@ from typing import List
 
 
 class Const(object):
-    APP_NAME: str = 'flex-table'
+    APP_NAME: str = 'flex-text-table'
     APP_VERSION: str = '2.5.0'
     APP_URL: str = 'https://github.com/MarcinOrlowski/python-flex-table/'
     APP_SUMMARY = 'Fast and flexible Pyhon library for text tables.'
