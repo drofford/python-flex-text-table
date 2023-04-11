@@ -1,0 +1,8 @@
+wemake-python-styleguide
+pytest
+pytest-cov
+wheel
+setuptools
+twine
+faker
+flake8
