@@ -11,6 +11,7 @@
 import unittest
 from typing import List
 
+# noinspection PyPackageRequirements
 from faker import Faker
 
 from flextable.align import Align

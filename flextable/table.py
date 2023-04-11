@@ -27,6 +27,10 @@ class FlexTable(object):
 
         :param header_columns: A list of header columns.
         """
+        self._columns = None
+        self._header = None
+        self._rows = None
+
         self.init(header_columns)
 
     def init(self, header_columns: Optional[List[str]] = None):
@@ -289,7 +293,7 @@ class FlexTable(object):
         """
         Sets title alignment for a specific column.
 
-        ::param Union[str, int] column_key: Table column ID, referring to the column you want to target.
+        :param Union[str, int] column_key: Table column ID, referring to the column you want to target.
         :param Align align: Target alignment to apply to the column title header.
         """
         self.columns[column_key].title_align = align
