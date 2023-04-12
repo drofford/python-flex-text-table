@@ -14,13 +14,14 @@ Fast and flexible Python library for text tables.
 This is probably the most common and yet the simplest possible usage:
 
 ```python
-from flextable.table import FlexTable
+# Import FlexTable root class
+from flextable.table import FlexTable       
 
 # Create the tablie with 3 columns, of which IDs will be their values.
 table = FlexTable(['ID', 'NAME', 'SCORE'])
 
 # Add 2 rows to the table, assignig cells in order of appearance.
-table->add_rows([
+table.add_rows([
     [1, 'John', 12],
     [2, 'Tommy', 15],
 ])
@@ -40,15 +41,90 @@ which in turn should produce this table:
 └────┴───────┴───────┘
 ```
 
----
+You can create the same result using even less code:
+
+```python
+# Import FlexTable root class
+from flextable.table import FlexTable
+
+# Pass table definition and data in one go
+table = FlexTable(
+    ['ID', 'NAME', 'SCORE'],
+    [
+        [1, 'John', 12],
+        [2, 'Tommy', 15],
+    ])
+
+# Print the whole table.
+print(table.render())
+```
 
 ### Use different table renderer
 
-The common usage of `FlexTable` library is to eventually present used the content of the table in the nice tabular form.
-As the table itself is just a data structure, "visualisation" of the table is done via the dedicated renderer which will
-return the table as a string. It therefore can influence the final look of the table, incl. the way it is formatted.
+The
+common
+usage
+of
+`FlexTable`
+library is to
+eventually
+present
+used
+the
+content
+of
+the
+table in the
+nice
+tabular
+form.
+As
+the
+table
+itself is just
+a
+data
+structure, "visualisation"
+of
+the
+table is done
+via
+the
+dedicated
+renderer
+which
+will
+return the
+table as a
+string.It
+therefore
+can
+influence
+the
+final
+look
+of
+the
+table, incl.the
+way
+it is formatted.
 
-To override the renderer, simply pass instance of the renderer of your choice to the `FlexTable`'s rendering shortcuts:
+To
+override
+the
+renderer, simply
+pass
+instance
+of
+the
+renderer
+of
+your
+choice
+to
+the
+`FlexTable`
+'s rendering shortcuts:
 
 ```python
 renderer = PlusMinusRenderer()
