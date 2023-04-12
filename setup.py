@@ -32,10 +32,6 @@ with open('README-pypi.md', 'r') as fh:
         name=Const.APP_NAME,
         version=Const.APP_VERSION,
         packages=find_packages(),
-
-        # install_requires=[
-        #     'argparse>=1.4.0',
-        # ],
         python_requires='>=3.8',
 
         author='Marcin Orlowski',
