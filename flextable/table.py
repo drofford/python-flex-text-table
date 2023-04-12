@@ -21,28 +21,47 @@ from flextable.rows_container import RowsContainer
 
 
 class FlexTable(object):
-    def __init__(self, header_columns: Optional[List[Union[str, Column]]] = None):  # noqa: WPS234
+    def __init__(self,  # noqa: WPS234
+                 header_columns: Optional[List[Union[str, Column]]] = None,
+                 rows: Optional[Union[Row, List[Union[Row, List, Dict]]]] = None):
         """
         Initializes a new instance of the FlexTable class with an optional list of header columns.
 
         :param header_columns: A list of header columns.
+        :param rows: Optional row(s) to be added to the table.
+
+        NOTE: if you want to add single row with columns data provided as list (i.e. init(..., [1, 2, 3])), you MUST
+        wrap it in another list: init(..., [[1, 2, 3]]) otherwise it will be treated as a list of rows which would
+        lead to runtime errors.
+
         """
         self._columns = None
         self._header = None
         self._rows = None
 
-        self.init(header_columns)
+        self.init(header_columns, rows)
 
-    def init(self, header_columns: Optional[List[str]] = None):
+    def init(self, header_columns: Optional[List[str]] = None,  # noqa: WPS234
+             rows: Optional[Union[Row, List[Union[Row, List, Dict]]]] = None):
         """
         Initializes the FlexTable instance with an optional list of header columns.
 
         :param header_columns: A list of header columns.
+        :param rows: Optional row(s) to be added to the table.
+
+        NOTE: if you want to add single row with columns data provided as list (i.e. init(..., [1, 2, 3])), you MUST
+        wrap it in another list: init(..., [[1, 2, 3]]) otherwise it will be treated as a list of rows which would
+        lead to runtime errors.
         """
         self.columns = ColumnsContainer()
-        self.rows = RowsContainer()
         if header_columns is not None:
             self.add_columns(header_columns)
+
+        self.rows = RowsContainer()
+        if rows is not None:
+            if not isinstance(rows, list):
+                rows = [rows]
+            self.add_rows(rows)
 
     # * ****************************************************************************************** *
 
@@ -255,7 +274,7 @@ class FlexTable(object):
     def render(self, renderer: Optional[RendererContract] = None) -> str:
         return self.render_as_str(renderer)
 
-    def render_as_str(self, renderer: Optional[RendererContract] = None, end='\n') -> str:
+    def render_as_str(self, renderer: Optional[RendererContract] = None, end = '\n') -> str:
         if renderer is None:
             renderer = FancyRenderer()
         return renderer.render_as_str(self, end)
@@ -327,7 +346,7 @@ class FlexTable(object):
         """
         keys = column_key if isinstance(column_key, list) else [column_key]
         for key in keys:
-            self.set_column_visibility(key, visible=False)
+            self.set_column_visibility(key, visible = False)
         return self
 
     def show_column(self, column_key: Union[str, int, List]) -> 'FlexTable':
@@ -338,7 +357,7 @@ class FlexTable(object):
         """
         keys = column_key if isinstance(column_key, list) else [column_key]
         for key in keys:
-            self.set_column_visibility(key, visible=True)
+            self.set_column_visibility(key, visible = True)
         return self
 
     def set_column_visibility(self, column_key: Union[str, int], visible: bool) -> 'FlexTable':
