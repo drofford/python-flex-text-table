@@ -18,7 +18,6 @@
 # twine upload dist/*
 #
 # pip install --upgrade dist/flex_text_table-2.5.0-py3-none-any.whl
-#
 
 from flextable.const import Const
 from setuptools import setup, find_packages
