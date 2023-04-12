@@ -177,13 +177,17 @@ reference.
 
 ```python
 from flextable.table import FlexTable
+from flextable.column import Column
+from flextable.cell import Cell
+from flextable.align import Align
+from flextable.renderers import MsDosRenderer
 
 # Create the list with 3 columns, of which IDs will be their values.
 # The definition of 2nd column is created explicitly, using instance 
 # of Column class that is automatically created for other columns.
-table = FlexTable(['ID', new Column('NAME', maxWidth: 20), 'SCORE'])
+table = FlexTable(['ID', Column('NAME', max_width: 20), 'SCORE'])
 
-table.set_column_align('SCORE', Align::RIGHT)
+table.set_column_align('SCORE', Align.RIGHT)
 
 # Add 2 rows to the table, assignig cells in order of appearance.
 # Similarly to the column above, the 2nd cell in second row is also
