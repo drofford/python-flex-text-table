@@ -23,7 +23,7 @@
 from flextable.const import Const
 from setuptools import setup, find_packages
 
-with open('README.md', 'r') as fh:
+with open('README-pypi.md', 'r') as fh:
     logo_url = 'https://raw.githubusercontent.com/MarcinOrlowski/python-flex-text-table/master/artwork/flex-text-table-logo.png'
     readme = fh.read().replace(r'![flex-text-table logo](artwork/flex-text-table-logo.png)',
                                f'![flex-text-table logo]({logo_url})', 1)
@@ -44,7 +44,7 @@ with open('README.md', 'r') as fh:
         long_description=readme,
         long_description_content_type='text/markdown',
         url=Const.APP_URL,
-        keywords='text table ascii command line console shell',
+        keywords='text table ascii command line console shell cli utf8 unicode',
         project_urls={
             'Bug Tracker': 'https://github.com/MarcinOrlowski/python-flex-table/issues/',
             'Documentation': 'https://github.com/MarcinOrlowski/python-flex-table/',
