@@ -1,4 +1,4 @@
-####################################################################
+####################################################################################################
 #
 # Flex Text Table
 # Fast and flexible Pyhon library for text tables.
@@ -6,7 +6,7 @@
 # Copyright ©2023 Marcin Orlowski <mail [@] MarcinOrlowski.com>
 # https://github.com/MarcinOrlowski/python-flex-text-table/
 #
-####################################################################
+####################################################################################################
 
 from typing import Optional
 
@@ -14,11 +14,20 @@ from flextable.align import Align
 
 
 class Column(object):
+    """
+    The Column class represents a single column within a table. It stores the column's title,
+    alignment properties (for the title and cells), maximum width, visibility, and other related
+    attributes. It also provides getter and setter methods for each attribute, along with a method
+    to update the maximum width.
+    """
+
+    # * ****************************************************************************************** *
+
     def __init__(self, title: str,
                  align: Align = Align.AUTO,
                  max_width: int = 0,
-                 cell_align: Optional[Align] = Align.AUTO,
-                 title_align: Optional[Align] = Align.AUTO,
+                 cell_align: Optional[Align] = None,
+                 title_align: Optional[Align] = None,
                  visible: bool = True):
         self._title: str = title
         self._max_width: int = max_width
@@ -84,10 +93,9 @@ class Column(object):
     def width(self) -> int:
         return self.max_width
 
-    def update_max_width(self, width: int) -> 'Column':
+    def update_max_width(self, width: int) -> None:
         if width > self.max_width:
             self.max_width = width
-        return self
 
     # * ****************************************************************************************** *
 

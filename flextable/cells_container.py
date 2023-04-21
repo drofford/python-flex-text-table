@@ -1,4 +1,4 @@
-####################################################################
+####################################################################################################
 #
 # Flex Text Table
 # Fast and flexible Pyhon library for text tables.
@@ -6,7 +6,7 @@
 # Copyright ©2023 Marcin Orlowski <mail [@] MarcinOrlowski.com>
 # https://github.com/MarcinOrlowski/python-flex-text-table/
 #
-####################################################################
+####################################################################################################
 
 from typing import Dict, Union
 
@@ -16,6 +16,15 @@ from flextable.exceptions import ColumnKeyNotFoundError, DuplicateColumnKeyError
 
 
 class CellsContainer(BaseContainer[Cell]):
+    """
+    The CellsContainer class is a subclass of BaseContainer that is specifically designed to store
+    Cell objects. It provides methods for adding and retrieving cells based on their column keys.
+    The class ensures that duplicate column keys are not allowed, raising an error if such an
+    attempt is made.
+    """
+
+    # * ****************************************************************************************** *
+
     def __init__(self, items: Dict[Union[str, int, float], Cell] = None):
         super().__init__(items, Cell)
 
