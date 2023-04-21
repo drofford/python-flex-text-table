@@ -47,6 +47,8 @@ Table of contents
 Simples possible usage:
 
 ```python
+from flextable.table import FlexTable
+
 table = FlexTable(['ID', 'NAME', 'SCORE'])
 table.add_rows({
     [1, 'John', 12],
@@ -73,5 +75,5 @@ See more [usage examples](docs/examples.md).
 ## License
 
 * Written and copyrighted &copy;2023 by Marcin Orlowski <mail (#) marcinorlowski (.) com>
-* Text Table is open-sourced software licensed under
+* Flex Text Table is open-sourced software licensed under
   the [MIT license](http://opensource.org/licenses/MIT)

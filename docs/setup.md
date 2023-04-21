@@ -1,5 +1,3 @@
-# Flex Text Table
-
 ```ascii
 #####.##....#####.##...##...######.#####.##...##.######...######...#....#####..##....#####
 ##....##....##.....##.##......##...##.....##.##....##.......##....###...##..##.##....##...
@@ -14,18 +12,18 @@ Fast and flexible Python library for text tables.
 
 ---
 
-## Requirements
+# Requirements
 
 * Python 3.8+
 
 ---
 
-## Installation
+# Installation
 
 ```bash
 $ pip install flex-text-table
 ```
 
-## External links
+# Links
 
 * [Project page on PyPi.org](https://pypi.org/project/flex-text-table/)

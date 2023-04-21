@@ -55,12 +55,12 @@ would produce nice text table:
 └────┴───────┴───────┘
 ```
 
-See more [usage examples](docs/examples.md).
+See more usage examples in [project docs](https://github.com/MarcinOrlowski/python-flex-text-table/).
 
 ---
 
 ## License
 
 * Written and copyrighted &copy;2023 by Marcin Orlowski <mail (#) marcinorlowski (.) com>
-* Text Table is open-sourced software licensed under
+* Flex Text Table is open-sourced software licensed under
   the [MIT license](http://opensource.org/licenses/MIT)

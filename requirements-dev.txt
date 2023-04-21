@@ -1,3 +1,4 @@
+# development dependencies. Not needed for normal usage.
 wemake-python-styleguide
 pytest
 pytest-cov
