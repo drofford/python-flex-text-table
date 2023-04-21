@@ -8,17 +8,17 @@
 #
 ####################################################################
 
-from typing import List
+from typing import List, Final
 
 
 class Const(object):
-    APP_NAME: str = 'flex-text-table'
-    APP_VERSION: str = '2.6.0'
-    APP_URL: str = 'https://github.com/MarcinOrlowski/python-flex-table/'
-    APP_SUMMARY = 'Fast and flexible Pyhon library for text tables.'
-    APP_INITIAL_YEAR: int = 2023
+    APP_NAME: Final[str] = 'flex-text-table'
+    APP_VERSION: Final[str] = '2.6.0'
+    APP_URL: Final[str] = 'https://github.com/MarcinOrlowski/python-flex-table/'
+    APP_SUMMARY: Final[str] = 'Fast and flexible Pyhon library for text tables.'
+    APP_INITIAL_YEAR: Final[int] = 2023
 
-    APP_DESCRIPTION: List[str] = [
+    APP_DESCRIPTION: Final[List[str]] = [
         f'{APP_NAME} v{APP_VERSION} * Copyright {APP_INITIAL_YEAR} by Marcin Orlowski.',
         f'{APP_SUMMARY}',
         f'{APP_URL}',

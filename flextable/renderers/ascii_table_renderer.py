@@ -9,7 +9,7 @@
 ####################################################################
 
 from abc import ABC
-from typing import List, Union, Optional
+from typing import List, Union, Optional, Final
 
 from flextable.align import Align
 from flextable.cell import Cell
@@ -50,9 +50,9 @@ class AsciiTableRenderer(RendererContract, ABC):
 
     # * ****************************************************************************************** *
 
-    ROW_FRAME_LEFT = '?'
-    ROW_FRAME_CENTER = '?'
-    ROW_FRAME_RIGHT = '?'
+    ROW_FRAME_LEFT: Final[str] = '?'
+    ROW_FRAME_CENTER: Final[str] = '?'
+    ROW_FRAME_RIGHT: Final[str] = '?'
 
     def render_no_data_row(self, ctx: RendererContext) -> str:
         label = 'NO DATA'
@@ -91,7 +91,8 @@ class AsciiTableRenderer(RendererContract, ABC):
 
             result += self.pad(columns, column_key, cell.value, align)
 
-            result += self.ROW_FRAME_RIGHT if ctx.is_last_visible_column(column_key) else self.ROW_FRAME_CENTER
+            result += self.ROW_FRAME_RIGHT if ctx.is_last_visible_column(
+                column_key) else self.ROW_FRAME_CENTER
 
         return result
 
@@ -109,7 +110,8 @@ class AsciiTableRenderer(RendererContract, ABC):
                 result += self.ROW_FRAME_LEFT
 
             result += self.pad(columns, column_key, column.title, column.title_align)
-            result += self.ROW_FRAME_RIGHT if ctx.is_last_visible_column(column_key) else self.ROW_FRAME_CENTER
+            result += self.ROW_FRAME_RIGHT if ctx.is_last_visible_column(
+                column_key) else self.ROW_FRAME_CENTER
 
         ctx.inc_rendered_row_idx()
 
@@ -117,16 +119,16 @@ class AsciiTableRenderer(RendererContract, ABC):
 
     # * ****************************************************************************************** *
 
-    SEGMENT_ROW_FILL = '?'
-    SEGMENT_FIRST_ROW_LEFT = '?'
-    SEGMENT_FIRST_ROW_CENTER = '?'
-    SEGMENT_FIRST_ROW_RIGHT = '?'
-    SEGMENT_ROW_LEFT = '?'
-    SEGMENT_ROW_CENTER = '?'
-    SEGMENT_ROW_RIGHT = '?'
-    SEGMENT_LAST_ROW_LEFT = '?'
-    SEGMENT_LAST_ROW_CENTER = '?'
-    SEGMENT_LAST_ROW_RIGHT = '?'
+    SEGMENT_ROW_FILL: Final[str] = '?'
+    SEGMENT_FIRST_ROW_LEFT: Final[str] = '?'
+    SEGMENT_FIRST_ROW_CENTER: Final[str] = '?'
+    SEGMENT_FIRST_ROW_RIGHT: Final[str] = '?'
+    SEGMENT_ROW_LEFT: Final[str] = '?'
+    SEGMENT_ROW_CENTER: Final[str] = '?'
+    SEGMENT_ROW_RIGHT: Final[str] = '?'
+    SEGMENT_LAST_ROW_LEFT: Final[str] = '?'
+    SEGMENT_LAST_ROW_CENTER: Final[str] = '?'
+    SEGMENT_LAST_ROW_RIGHT: Final[str] = '?'
 
     def render_bottom_separator(self, ctx: RendererContext) -> str:
         result = self.SEGMENT_LAST_ROW_LEFT
@@ -260,7 +262,8 @@ class AsciiTableRenderer(RendererContract, ABC):
     def get_column_align(self, columns: ColumnsContainer, column_key: Union[str, int]) -> Align:
         return columns[column_key].cell_align
 
-    def get_column_title_align(self, columns: ColumnsContainer, column_key: Union[str, int]) -> Align:
+    def get_column_title_align(self, columns: ColumnsContainer,
+                               column_key: Union[str, int]) -> Align:
         return columns[column_key].title_align
 
     # * ****************************************************************************************** *
