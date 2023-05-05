@@ -21,6 +21,7 @@ from flextable.row import Row
 
 
 class AsciiTableRenderer(RendererContract, ABC):
+    """Abstract base class for all ASCII table renderers."""
 
     def render_as_list(self, table: 'FlexTable') -> List:
         """
