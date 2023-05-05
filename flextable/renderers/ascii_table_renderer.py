@@ -9,7 +9,7 @@
 ####################################################################################################
 
 from abc import ABC
-from typing import List, Union, Optional, Final
+from typing import List, Union, Optional
 
 from flextable.align import Align
 from flextable.cell import Cell
@@ -59,9 +59,9 @@ class AsciiTableRenderer(RendererContract, ABC):
 
     # * ****************************************************************************************** *
 
-    ROW_FRAME_LEFT: Final[str] = '?'
-    ROW_FRAME_CENTER: Final[str] = '?'
-    ROW_FRAME_RIGHT: Final[str] = '?'
+    ROW_FRAME_LEFT: str = '?'
+    ROW_FRAME_CENTER: str = '?'
+    ROW_FRAME_RIGHT: str = '?'
 
     def render_no_data_row(self, ctx: RendererContext) -> str:
         """
@@ -157,16 +157,16 @@ class AsciiTableRenderer(RendererContract, ABC):
 
     # * ****************************************************************************************** *
 
-    SEGMENT_ROW_FILL: Final[str] = '?'
-    SEGMENT_FIRST_ROW_LEFT: Final[str] = '?'
-    SEGMENT_FIRST_ROW_CENTER: Final[str] = '?'
-    SEGMENT_FIRST_ROW_RIGHT: Final[str] = '?'
-    SEGMENT_ROW_LEFT: Final[str] = '?'
-    SEGMENT_ROW_CENTER: Final[str] = '?'
-    SEGMENT_ROW_RIGHT: Final[str] = '?'
-    SEGMENT_LAST_ROW_LEFT: Final[str] = '?'
-    SEGMENT_LAST_ROW_CENTER: Final[str] = '?'
-    SEGMENT_LAST_ROW_RIGHT: Final[str] = '?'
+    SEGMENT_ROW_FILL: str = '?'
+    SEGMENT_FIRST_ROW_LEFT: str = '?'
+    SEGMENT_FIRST_ROW_CENTER: str = '?'
+    SEGMENT_FIRST_ROW_RIGHT: str = '?'
+    SEGMENT_ROW_LEFT: str = '?'
+    SEGMENT_ROW_CENTER: str = '?'
+    SEGMENT_ROW_RIGHT: str = '?'
+    SEGMENT_LAST_ROW_LEFT: str = '?'
+    SEGMENT_LAST_ROW_CENTER: str = '?'
+    SEGMENT_LAST_ROW_RIGHT: str = '?'
 
     def render_bottom_separator(self, ctx: RendererContext) -> str:
         """

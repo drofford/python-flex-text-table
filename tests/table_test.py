@@ -8,7 +8,6 @@
 #
 ####################################################################
 
-import unittest
 from typing import List
 
 from flextable.align import Align

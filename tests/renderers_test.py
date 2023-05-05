@@ -60,5 +60,4 @@ class RendererTest(BaseTestCase):
         self.assertEquals('─┴─', FancyRenderer.SEGMENT_LAST_ROW_CENTER)
         self.assertEquals('─┘', FancyRenderer.SEGMENT_LAST_ROW_RIGHT)
 
-
     # * ****************************************************************************************** *
