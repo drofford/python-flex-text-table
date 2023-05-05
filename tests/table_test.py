@@ -11,21 +11,15 @@
 import unittest
 from typing import List
 
-# noinspection PyPackageRequirements
-from faker import Faker
-
 from flextable.align import Align
 from flextable.cell import Cell
 from flextable.column import Column
 from flextable.renderers.ms_dos_renderer import MsDosRenderer
 from flextable.table import FlexTable
+from tests.base_test_case import BaseTestCase
 
 
-class TestA(unittest.TestCase):
-
-    def setUp(self) -> None:
-        super().setUp()
-        self.faker = Faker()
+class TestA(BaseTestCase):
 
     # * ****************************************************************************************** *
 
