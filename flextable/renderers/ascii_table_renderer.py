@@ -226,34 +226,21 @@ class AsciiTableRenderer(RendererContract, ABC):
         :return: A string representing the separator row.
         """
         columns = ctx.table.columns
-
         result = ''
 
-        if ctx.table.row_count > 0:
-            if ctx.is_last_visible_row():
-                is_first_row = False
-                is_last_row = True
-            elif ctx.is_first_visible_row():
-                is_first_row = True
-                is_last_row = False
-            else:
-                is_first_row = False
-                is_last_row = False
-        else:
-            is_first_row = False
-            is_last_row = False
+        is_first_row = ctx.is_first_visible_row()
+        is_last_row = ctx.is_last_visible_row()
 
         for column_key, column in columns.items():
             if not column.visible:
                 continue
 
-            # FIXME - hide first column and we have problem?
+            segment = self.SEGMENT_ROW_LEFT
+
             if is_first_row:
                 segment = self.SEGMENT_FIRST_ROW_LEFT
             elif is_last_row:
                 segment = self.SEGMENT_LAST_ROW_LEFT
-            else:
-                segment = self.SEGMENT_ROW_LEFT
 
             if ctx.is_first_visible_column(column_key):
                 result += segment
