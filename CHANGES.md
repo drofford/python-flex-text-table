@@ -14,15 +14,12 @@ Fast and flexible Python library for text tables.
 
 # Changes
 
-* 2.6.1 (2023-05-05)
+* 2.6.0 (2023-05-05)
   * Fixed column container not updating width of columns correctly.
   * Simplified header rendering code.
   * Corrected typehints.
   * Added more tests.
   * Updated docs.
-
-
-* 2.6.0 (2023-04-12)
   * `FlexTable` c'tor now also accepts rows for instant initialization.
 
 
