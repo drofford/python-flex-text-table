@@ -38,7 +38,7 @@ from flextable.table import FlexTable       # Import FlexTable root class
 
 table = FlexTable(['ID', 'NAME', 'SCORE'])  # Define table with 3 columns
 table.add_rows([
-    [1, 'John', 12],                        # Add 2 rows, each with 3 columns each
+    [1, 'John', 12],                        # Add 2 rows, 3 columns each
     [2, 'Tommy', 15],
 ])
 print(table.render())                       # Render table as string and print
