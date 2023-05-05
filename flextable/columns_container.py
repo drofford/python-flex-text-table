@@ -28,7 +28,7 @@ class ColumnsContainer(BaseContainer[Column]):
 
         self._container[column_key] = column
 
-        self[column_key].update_max_width(len(column.title))
+        self._container[column_key].update_max_width(len(column.title))
 
     # Implement the __getitem__ method to access items using keys
     def __getitem__(self, key: Union[str, int]) -> Column:
