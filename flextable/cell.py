@@ -1,4 +1,4 @@
-####################################################################
+####################################################################################################
 #
 # Flex Text Table
 # Fast and flexible Pyhon library for text tables.
@@ -6,7 +6,7 @@
 # Copyright ©2023 Marcin Orlowski <mail [@] MarcinOrlowski.com>
 # https://github.com/MarcinOrlowski/python-flex-text-table/
 #
-####################################################################
+####################################################################################################
 
 from typing import Union, Optional
 
@@ -14,7 +14,16 @@ from flextable.align import Align
 
 
 class Cell(object):
-    def __init__(self, value: Optional[Union[str, int, float, bool]] = '', align=Align.AUTO):
+    """
+    This class represents a table cell in a text-based table layout. It stores the cell's content,
+    which can be of various data types (string, integer, float, or boolean), and its alignment.
+    The alignment can be set automatically or explicitly specified using the `Align` enumeration.
+    The `Cell` class provides properties and setters to access and modify the cell's value and
+    alignment.
+    """
+
+    def __init__(self, value: Optional[Union[str, int, float, bool]] = '',
+                 align: Align = Align.AUTO):
         self.value: Optional[Union[str, int, float, bool]] = value
         self.align: Align = align
 

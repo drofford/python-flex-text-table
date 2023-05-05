@@ -1,4 +1,4 @@
-####################################################################
+####################################################################################################
 #
 # Flex Text Table
 # Fast and flexible Pyhon library for text tables.
@@ -6,7 +6,7 @@
 # Copyright ©2023 Marcin Orlowski <mail [@] MarcinOrlowski.com>
 # https://github.com/MarcinOrlowski/python-flex-text-table/
 #
-####################################################################
+####################################################################################################
 
 from typing import Union
 
@@ -113,7 +113,8 @@ class RendererContext(object):
         Returns whether the current row being rendered is the first visible row in the table.
 
         Returns:
-            True if the current row being rendered is the first visible row in the table, otherwise False.
+            True if the current row being rendered is the first visible row in the table,
+            otherwise False.
         """
         return self.rendered_row_idx == 0
 
@@ -122,6 +123,7 @@ class RendererContext(object):
         Returns whether the current row being rendered is the last visible row in the table.
 
         Returns:
-            True if the current row being rendered is the last visible row in the table, otherwise False.
+            True if the current row being rendered is the last visible row in the table,
+            otherwise False.
         """
         return self.table_row_idx == self.table.row_count

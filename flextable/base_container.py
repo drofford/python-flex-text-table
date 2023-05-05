@@ -1,4 +1,4 @@
-####################################################################
+####################################################################################################
 #
 # Flex Text Table
 # Fast and flexible Pyhon library for text tables.
@@ -6,7 +6,7 @@
 # Copyright ©2023 Marcin Orlowski <mail [@] MarcinOrlowski.com>
 # https://github.com/MarcinOrlowski/python-flex-text-table/
 #
-####################################################################
+####################################################################################################
 
 from abc import ABC
 from typing import Dict, TypeVar, Union, Type, Optional, Generic
@@ -15,13 +15,17 @@ T = TypeVar('T')  # noqa: WPS111
 
 
 class BaseContainer(Generic[T], ABC):
-    def __init__(self, items: Optional[Dict[Union[str, int], Type[T]]] = None,  # noqa: WPS234
+    def __init__(self, items: Optional[Dict[Union[str, int], T]] = None,  # noqa: WPS234
                  data_type: Type[T] = None) -> None:
         if data_type is None:
             raise TypeError('data_type argument must be provided')
 
-        self.container = items if items is not None else {}
         self._data_type: Type[T] = data_type
+        self.container = {}
+
+        if items is not None:
+            for key, value in items.items():
+                self.__setitem__(key, value)
 
     # * ****************************************************************************************** *
 
@@ -53,13 +57,13 @@ class BaseContainer(Generic[T], ABC):
         """
         return len(self._container)
 
-    def __getitem__(self, index: Union[str, int]) -> Type[T]:
+    def __getitem__(self, index: Union[str, int]) -> T:
         """
         Implement the __getitem__ method to access items using keys
         """
         return self._container[index]
 
-    def __setitem__(self, key: Union[str, int], value: Type[T]):
+    def __setitem__(self, key: Union[str, int], value: T):
         """
         Implement the __setitem__ method to set items using keys
         """

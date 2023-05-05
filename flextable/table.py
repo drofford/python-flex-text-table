@@ -1,4 +1,4 @@
-####################################################################
+####################################################################################################
 #
 # Flex Text Table
 # Fast and flexible Pyhon library for text tables.
@@ -6,7 +6,7 @@
 # Copyright ©2023 Marcin Orlowski <mail [@] MarcinOrlowski.com>
 # https://github.com/MarcinOrlowski/python-flex-text-table/
 #
-####################################################################
+####################################################################################################
 
 from typing import List, Union, Dict, Optional
 
@@ -21,24 +21,47 @@ from flextable.rows_container import RowsContainer
 
 
 class FlexTable(object):
-    def __init__(self, header_columns: Optional[List[Union[str, Column]]] = None):  # noqa: WPS234
+    def __init__(self,  # noqa: WPS234
+                 header_columns: Optional[Union[Dict, List[Union[str, Column]]]] = None,
+                 rows: Optional[Union[Row, List[Union[Row, List, Dict]]]] = None):
         """
         Initializes a new instance of the FlexTable class with an optional list of header columns.
 
         :param header_columns: A list of header columns.
-        """
-        self.init(header_columns)
+        :param rows: Optional row(s) to be added to the table.
 
-    def init(self, header_columns: Optional[List[str]] = None):
+        NOTE: if you want to add single row with columns data provided as list (i.e. init(...,
+        [1, 2, 3])), you MUST wrap it in another list: init(..., [[1, 2, 3]]) otherwise it will
+        be treated as a list of rows which would lead to runtime errors.
+
+        """
+        self._columns = None
+        self._header = None
+        self._rows = None
+
+        self.init(header_columns, rows)
+
+    def init(self, header_columns: Optional[List[str]] = None,  # noqa: WPS234
+             rows: Optional[Union[Row, List[Union[Row, List, Dict]]]] = None):
         """
         Initializes the FlexTable instance with an optional list of header columns.
 
         :param header_columns: A list of header columns.
+        :param rows: Optional row(s) to be added to the table.
+
+        NOTE: if you want to add single row with columns data provided as list (i.e.
+        init(..., [1, 2, 3])), you MUST wrap it in another list: init(..., [[1, 2, 3]])
+        otherwise it will be treated as a list of rows which would lead to runtime errors.
         """
         self.columns = ColumnsContainer()
-        self.rows = RowsContainer()
         if header_columns is not None:
             self.add_columns(header_columns)
+
+        self.rows = RowsContainer()
+        if rows is not None:
+            if not isinstance(rows, list):
+                rows = [rows]
+            self.add_rows(rows)
 
     # * ****************************************************************************************** *
 
@@ -80,7 +103,8 @@ class FlexTable(object):
         """
         self._columns = columns
 
-    def add_column(self, column_key: Union[str, int], column_val: Union[Column, str]) -> 'FlexTable':
+    def add_column(self, column_key: Union[str, int],
+                   column_val: Union[Column, str]) -> 'FlexTable':
         """
         Adds a new column to the FlexTable instance.
 
@@ -100,16 +124,19 @@ class FlexTable(object):
         return self
 
     def add_columns(self,  # noqa: WPS234
-                    columns: Optional[Union[List[Union[str, Column]], Dict[str, Union[str, Column]]]]) -> 'FlexTable':
+                    columns: Optional[Union[
+                        List[Union[str, Column]], Dict[str, Union[str, Column]]]]) -> 'FlexTable':
         """
-        Adds multiple columns at once. Note columns are registered in the order they are present in source data.
+        Adds multiple columns at once. Note columns are registered in the order they are present in
+        the source data.
 
-        Note that this method **auto-creates** column keys for all **non-string** table keys. For such case,
-        the key will be derived either from passed `str` for from `Column`'s title string. All explicitly
-        specified `str` keys will be preserved and used.
+        Note that this method **auto-creates** column keys for all **non-string** table keys.
+        For such case, the key will be derived either from passed `str` for from `Column`'s title
+        string. All explicitly specified `str` keys will be preserved and used.
 
-        :param columns The `Columns` to be added, given either via instance of `Column` or as string to be
-               used as column title (for which instance of `Column` will be automatically created).
+        :param columns The `Columns` to be added, given either via instance of `Column` or as a
+                       string to be used as column title (for which instance of `Column` will
+                       be automatically created).
         """
         if columns is None:
             return self
@@ -124,10 +151,27 @@ class FlexTable(object):
         return self
 
     def add_columns_from_list(self, columns: List):
+        """
+        Method: add_columns_from_list
+
+        Adds multiple columns to the FlexTable instance from a list of column values. Each value in
+        the list can be either a string or a Column object.
+
+        :param columns: A list of column values, either strings or Column objects.
+        """
         for column_val in columns:
             self.add_column(column_val, column_val)
 
     def add_columns_from_dict(self, columns: Dict[str, Union[str, Column]]):
+        """
+        Method: add_columns_from_dict
+
+        Adds multiple columns to the FlexTable instance from a dictionary with keys as column keys
+        and values as column values. The column keys can be either strings or integers. The column
+        values can be either strings or Column objects.
+
+        :param columns: A dictionary with keys as column keys and values as column values.
+        """
         for column_key, column_val in columns.items():
             if isinstance(column_key, int):
                 if isinstance(column_val, str):
@@ -168,15 +212,17 @@ class FlexTable(object):
         """
         Appends new row to the end of table.
 
-        :param src_row: When a list or dictionary is given, it is expected that each of the columns represents
-                        the row's cell value. The elements should be either instances of the Cell class or string|int.
-                        If a primitive is given, an instance of Cell will automatically be created. The dictionary
-                        elements can be in the form columnKey => value or can be provided as a list without their
-                        own keys. In the latter case, the proper columnKey will be selected based on the table column
-                        definitions (i.e., for srcRow being ['a', 'b'], the b value will be placed into the cell of
-                        the second column). This auto-assignment works only when srcRow is a list with no custom keys
-                        and table column definitions all use string keys. In all other cases, an explicit column's key
-                        must be given. Passing None as src_row has no effect.
+        :param src_row: When a list or dictionary is given, it is expected that each of the columns
+                        represents the row's cell value. The elements should be either instances of
+                        the Cell class or string|int. If a primitive is given, an instance of Cell
+                        will automatically be created. The dictionary elements can be in the form
+                        columnKey => value or can be provided as a list without their own keys.
+                        In the latter case, the proper columnKey will be selected based on the table
+                        column definitions (i.e., for srcRow being ['a', 'b'], the b value will be
+                        placed into the cell of the second column). This auto-assignment works only
+                        when srcRow is a list with no custom keys and table column definitions all
+                        use string keys. In all other cases, an explicit column's key must be given.
+                        Passing None as src_row has no effect.
         """
         if src_row is None:
             return
@@ -198,6 +244,14 @@ class FlexTable(object):
         self.rows[row_id] = row
 
     def add_row_from_list(self, src_row: List, column_keys: List) -> Row:
+        """
+        Creates a Row object from a given list of cell values and column keys. This method is used
+        internally by the add_row method when src_row is of type list.
+
+        :param src_row: A list of cell values to add to the new row.
+        :param column_keys: A list of column keys for the corresponding cell values.
+        :return: A Row object containing the added cells.
+        """
         row = Row()
 
         for list_idx, item in enumerate(src_row):
@@ -209,14 +263,23 @@ class FlexTable(object):
         return row
 
     def add_row_from_dict(self, src_row: Dict, column_keys: List) -> Row:
+        """
+        Creates a Row object from a given dictionary of cell values and column keys. This method is
+        used internally by the add_row method when src_row is of type dict.
+
+        :param src_row: A dictionary of cell values with keys as column keys.
+        :param column_keys: A list of column keys for the corresponding cell values.
+        :return: A Row object containing the added cells.
+        """
         row = Row()
 
         src_row_keys = list(src_row)
         items_to_add_count = len(src_row)
 
-        # If src_row is a dict and has only numeric keys, and column definitions are using non-numeric keys,
-        # then it is assumed that source elements are to be treated as organized in sequence. They will be
-        # automatically assigned to cell at position matching their index in source dataset.
+        # If src_row is a dict and has only numeric keys, and column definitions are using
+        # non-numeric keys, # then it is assumed that source elements are to be treated as
+        # organized in sequence. They will be automatically assigned to cell at position
+        # matching their index in source dataset.
         int_keys_count = len(list(filter(lambda key: isinstance(key, int), src_row_keys)))
         src_has_num_keys_only = items_to_add_count == int_keys_count
 
@@ -249,9 +312,24 @@ class FlexTable(object):
     # * ****************************************************************************************** *
 
     def render(self, renderer: Optional[RendererContract] = None) -> str:
+        """
+        Renders the FlexTable as a formatted string using the provided renderer or the default
+        FancyRenderer if none is provided.
+
+        :param renderer: An optional renderer instance implementing the RendererContract.
+        :return: A string representing the rendered FlexTable.
+        """
         return self.render_as_str(renderer)
 
-    def render_as_str(self, renderer: Optional[RendererContract] = None, end='\n') -> str:
+    def render_as_str(self, renderer: Optional[RendererContract] = None, end: str = '\n') -> str:
+        """
+        Renders the FlexTable as a string, with each row separated by the specified 'end' parameter,
+        using the provided renderer or the default FancyRenderer if none is provided.
+
+        :param renderer: An optional renderer instance implementing the RendererContract.
+        :param end: A string to separate each row in the rendered output (default: newline char).
+        :return: A string representing the rendered FlexTable.
+        """
         if renderer is None:
             renderer = FancyRenderer()
         return renderer.render_as_str(self, end)
@@ -262,6 +340,12 @@ class FlexTable(object):
         return renderer.render_as_list(self)
 
     def __repr__(self):
+        """
+        Returns a string representation of the FlexTable instance. This method uses the
+        render_as_str method to generate the string representation.
+
+        :return: A string representing the FlexTable instance.
+        """
         return self.render_as_str()
 
     # * ****************************************************************************************** *
@@ -278,7 +362,7 @@ class FlexTable(object):
         """
         Helper method that sets both cell and title alignment for a specific column.
 
-        :param Union[str, int] column_key: Table column ID, referring to the column you want to target.
+        :param Union[str, int] column_key: Table column ID, referring to the target column.
         :param align: Target alignment to apply to the whole column (title and data cells)
         """
         self.set_title_align(column_key, align)
@@ -289,7 +373,7 @@ class FlexTable(object):
         """
         Sets title alignment for a specific column.
 
-        ::param Union[str, int] column_key: Table column ID, referring to the column you want to target.
+        :param Union[str, int] column_key: Table column ID, referring to the target column.
         :param Align align: Target alignment to apply to the column title header.
         """
         self.columns[column_key].title_align = align
@@ -299,7 +383,7 @@ class FlexTable(object):
         """
         Sets cell alignment for a specific column.
 
-        :param Union[str, int] column_key: Table column ID, referring to the column you want to target.
+        :param Union[str, int] column_key: Table column ID, referring to the target column.
         :param Align align: Target alignment to apply to the data cells of the columns.
         """
         self.columns[column_key].align = align
@@ -309,8 +393,8 @@ class FlexTable(object):
         """
         Sets the maximum width for a specific column.
 
-        :param Union[str, int] column_key: Table column ID, referring to the column you want to target.
-        :param int max_width: Maximum width to apply to the column. Cell exceeding this value will be truncated.
+        :param Union[str, int] column_key: Table column ID, referring to the target column.
+        :param int max_width: Max column width. Cell exceeding this value will be truncated.
         """
         self.columns[column_key].max_width = max_width
         return self
@@ -319,7 +403,7 @@ class FlexTable(object):
         """
         Hides one or multiple columns in the table. Attempt to hide hidden column is safe.
 
-        :param Union[str, int] column_key: Table column ID, referring to the column you want to target.
+        :param Union[str, int] column_key: Table column ID, referring to the target column.
         """
         keys = column_key if isinstance(column_key, list) else [column_key]
         for key in keys:
@@ -330,7 +414,7 @@ class FlexTable(object):
         """
         Reveals formerly hidden columns in the table. Attempt to show visible column is safe.
 
-        :param Union[str, int] column_key: Table column ID, referring to the column you want to target.
+        :param Union[str, int] column_key: Table column ID, referring to the target column.
         """
         keys = column_key if isinstance(column_key, list) else [column_key]
         for key in keys:
@@ -341,7 +425,7 @@ class FlexTable(object):
         """
         Sets the visibility of a specific column.
 
-        :param Union[str, int] column_key: Table column ID, referring to the column you want to target.
+        :param Union[str, int] column_key: Table column ID, referring to the target column.
         :param visible: True to make the column visible, False to hide it.
         """
         self.columns[column_key].visible = visible

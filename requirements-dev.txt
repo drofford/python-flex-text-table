@@ -1,3 +1,5 @@
+# development dependencies. Not needed for normal usage.
+-r requirements.txt
 wemake-python-styleguide
 pytest
 pytest-cov

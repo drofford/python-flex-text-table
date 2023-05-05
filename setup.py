@@ -11,29 +11,26 @@
 ####################################################################
 #
 # python -m venv venv
-# source venv/activate.fish
 # pip install wheel twine
+#
+# source venv/activate.fish
 # python setup.py sdist bdist_wheel
-# pip install --upgrade dist/flex_table-2.5.0-py3-none-any.whl
 # twine upload dist/*
 #
+# pip install --upgrade dist/flex_text_table-2.5.0-py3-none-any.whl
 
 from flextable.const import Const
 from setuptools import setup, find_packages
 
-with open('README.md', 'r') as fh:
-    logo_url = 'https://raw.githubusercontent.com/MarcinOrlowski/python-flex-table/master/artwork/flex-table.png'
-    readme = fh.read().replace(r'![flex-table logo](artwork/flex-table-logo.png)',
-                               f'![flex-table logo]({logo_url})', 1)
+with open('README-pypi.md', 'r') as fh:
+    logo_url = 'https://raw.githubusercontent.com/MarcinOrlowski/python-flex-text-table/master/artwork/flex-text-table-logo.png'
+    readme = fh.read().replace(r'![flex-text-table logo](artwork/flex-text-table-logo.png)',
+                               f'![flex-text-table logo]({logo_url})', 1)
 
     setup(
         name=Const.APP_NAME,
         version=Const.APP_VERSION,
         packages=find_packages(),
-
-        install_requires=[
-            # 'argparse>=1.4.0',
-        ],
         python_requires='>=3.8',
 
         author='Marcin Orlowski',
@@ -42,7 +39,7 @@ with open('README.md', 'r') as fh:
         long_description=readme,
         long_description_content_type='text/markdown',
         url=Const.APP_URL,
-        keywords='text table ascii command line console shell',
+        keywords='text table ascii command line console shell cli utf8 unicode',
         project_urls={
             'Bug Tracker': 'https://github.com/MarcinOrlowski/python-flex-table/issues/',
             'Documentation': 'https://github.com/MarcinOrlowski/python-flex-table/',

@@ -1,4 +1,4 @@
-####################################################################
+####################################################################################################
 #
 # Flex Text Table
 # Fast and flexible Pyhon library for text tables.
@@ -6,23 +6,25 @@
 # Copyright ©2023 Marcin Orlowski <mail [@] MarcinOrlowski.com>
 # https://github.com/MarcinOrlowski/python-flex-text-table/
 #
-####################################################################
+####################################################################################################
+
+from typing import Final
 
 from flextable.renderers.ascii_table_renderer import AsciiTableRenderer
 
 
 class FancyRenderer(AsciiTableRenderer):
-    ROW_FRAME_LEFT = '│ '
-    ROW_FRAME_CENTER = ' │ '
-    ROW_FRAME_RIGHT = ' │'
+    ROW_FRAME_LEFT: Final[str] = '│ '
+    ROW_FRAME_CENTER: Final[str] = ' │ '
+    ROW_FRAME_RIGHT: Final[str] = ' │'
 
-    SEGMENT_ROW_FILL = '─'
-    SEGMENT_FIRST_ROW_LEFT = '┌─'
-    SEGMENT_FIRST_ROW_CENTER = '─┬─'
-    SEGMENT_FIRST_ROW_RIGHT = '─┐'
-    SEGMENT_ROW_LEFT = '├─'
-    SEGMENT_ROW_CENTER = '─┼─'
-    SEGMENT_ROW_RIGHT = '─┤'
-    SEGMENT_LAST_ROW_LEFT = '└─'
-    SEGMENT_LAST_ROW_CENTER = '─┴─'
-    SEGMENT_LAST_ROW_RIGHT = '─┘'
+    SEGMENT_ROW_FILL: Final[str] = '─'
+    SEGMENT_FIRST_ROW_LEFT: Final[str] = '┌─'
+    SEGMENT_FIRST_ROW_CENTER: Final[str] = '─┬─'
+    SEGMENT_FIRST_ROW_RIGHT: Final[str] = '─┐'
+    SEGMENT_ROW_LEFT: Final[str] = '├─'
+    SEGMENT_ROW_CENTER: Final[str] = '─┼─'
+    SEGMENT_ROW_RIGHT: Final[str] = '─┤'
+    SEGMENT_LAST_ROW_LEFT: Final[str] = '└─'
+    SEGMENT_LAST_ROW_CENTER: Final[str] = '─┴─'
+    SEGMENT_LAST_ROW_RIGHT: Final[str] = '─┘'

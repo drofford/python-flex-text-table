@@ -8,23 +8,19 @@
 #
 ####################################################################
 
-import unittest
 from typing import List
-
-from faker import Faker
 
 from flextable.align import Align
 from flextable.cell import Cell
 from flextable.column import Column
 from flextable.renderers.ms_dos_renderer import MsDosRenderer
 from flextable.table import FlexTable
+from tests.base_test_case import BaseTestCase
 
 
-class TestA(unittest.TestCase):
+class TestA(BaseTestCase):
 
-    def setUp(self) -> None:
-        super().setUp()
-        self.faker = Faker()
+    # * ****************************************************************************************** *
 
     def render_table(self, table: FlexTable, echo_table: bool = False) -> List[str]:
         renderer = MsDosRenderer()
@@ -55,6 +51,85 @@ class TestA(unittest.TestCase):
             '║ A ║ B ║ C ║',
             '╠═══╬═══╬═══╣',
             '║ a ║ b ║ c ║',
+            '╚═══╩═══╩═══╝',
+        ]
+
+        self.assertEquals(expected, rendered_table)
+
+    # * ****************************************************************************************** *
+
+    def test_simple_table_via_ctor(self) -> None:
+        table = FlexTable(
+            # columns
+            {
+                'A': 'A',
+                'B': 'B',
+                'C': 'C',
+            },
+            # data rows
+            [{
+                'A': 'a',
+                'B': 'b',
+                'C': 'c',
+            },
+                ['d', 'e', 'f'],
+            ])
+
+        rendered_table = self.render_table(table)
+
+        expected = [
+            '╔═══╦═══╦═══╗',
+            '║ A ║ B ║ C ║',
+            '╠═══╬═══╬═══╣',
+            '║ a ║ b ║ c ║',
+            '║ d ║ e ║ f ║',
+            '╚═══╩═══╩═══╝',
+        ]
+
+        self.assertEquals(expected, rendered_table)
+
+    def test_simple_table_via_ctor_list(self) -> None:
+        table = FlexTable({
+            'A': 'A',
+            'B': 'B',
+            'C': 'C',
+        },
+            [['d', 'e', 'f']],
+        )
+
+        rendered_table = self.render_table(table)
+
+        expected = [
+            '╔═══╦═══╦═══╗',
+            '║ A ║ B ║ C ║',
+            '╠═══╬═══╬═══╣',
+            '║ d ║ e ║ f ║',
+            '╚═══╩═══╩═══╝',
+        ]
+
+        self.assertEquals(expected, rendered_table)
+
+    def test_simple_table_via_ctor_mixed_type_dataset(self) -> None:
+        table = FlexTable({
+            'A': 'A',
+            'B': 'B',
+            'C': 'C',
+        }, [{
+            'A': 'a',
+            'B': 'b',
+            'C': 'c',
+        },
+            ['d', 'e', 'f'],
+        ])
+
+        rendered_table = self.render_table(table)
+
+        expected = [
+            '╔═══╦═══╦═══╗',
+            '║ A ║ B ║ C ║',
+            '╠═══╬═══╬═══╣',
+            '║ a ║ b ║ c ║',
+            '║ d ║ e ║ f ║',
             '╚═══╩═══╩═══╝',
         ]
 
@@ -212,7 +287,7 @@ class TestA(unittest.TestCase):
 
     def test_cell_column_align(self):
         table = FlexTable(['ID',
-                           Column('NAME', max_width=20),
+                           Column('NAME', max_width = 20),
                            'SCORE',
                            ])
         table.add_rows([
@@ -285,7 +360,7 @@ class TestA(unittest.TestCase):
 
     def test_custom_width_and_utf_multicolumn(self):
         table = FlexTable([
-            Column('NAME', max_width=25),
+            Column('NAME', max_width = 25),
         ])
 
         table.add_rows([
@@ -393,7 +468,7 @@ class TestA(unittest.TestCase):
 
     def test_custom_width_clipping(self):
         max_length = self.faker.random_int(10, 20)
-        long_name = self.faker.sentence(nb_words=max_length)
+        long_name = self.faker.sentence(nb_words = max_length)
 
         clipped = long_name[:max_length - 1] + '…'
 
