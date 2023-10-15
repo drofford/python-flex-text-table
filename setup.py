@@ -13,6 +13,8 @@
 # python -m venv venv
 # pip install wheel twine
 #
+# vi flextable/const.py
+#
 # source venv/activate.fish
 # python setup.py sdist bdist_wheel
 # twine upload dist/*
