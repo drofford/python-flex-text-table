@@ -13,7 +13,7 @@ from typing import List, Final
 
 class Const(object):
     APP_NAME: Final[str] = 'flex-text-table'
-    APP_VERSION: Final[str] = '2.6.0'
+    APP_VERSION: Final[str] = '2.7.0'
     APP_URL: Final[str] = 'https://github.com/MarcinOrlowski/python-flex-text-table/'
     APP_SUMMARY: Final[str] = 'Fast and flexible Pyhon library for text tables.'
     APP_INITIAL_YEAR: Final[int] = 2023

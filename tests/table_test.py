@@ -56,6 +56,27 @@ class TestA(BaseTestCase):
 
         self.assertEquals(expected, rendered_table)
 
+        # * ****************************************************************************************** *
+
+    def test_column_title_visibility(self) -> None:
+        table = FlexTable(['ID',
+                           Column('SCORE', title_visible=False)])
+        table.add_rows([
+            {'ID': 1, 'SCORE': 12},
+        ])
+
+        rendered_table = self.render_table(table)
+
+        expected = [
+            '╔════╦═══════╗',
+            '║ ID ║       ║',
+            '╠════╬═══════╣',
+            '║ 1  ║ 12    ║',
+            '╚════╩═══════╝',
+        ]
+
+        self.assertEquals(expected, rendered_table)
+
     # * ****************************************************************************************** *
 
     def test_simple_table_via_ctor(self) -> None:
@@ -287,7 +308,7 @@ class TestA(BaseTestCase):
 
     def test_cell_column_align(self):
         table = FlexTable(['ID',
-                           Column('NAME', max_width = 20),
+                           Column('NAME', max_width=20),
                            'SCORE',
                            ])
         table.add_rows([
@@ -360,7 +381,7 @@ class TestA(BaseTestCase):
 
     def test_custom_width_and_utf_multicolumn(self):
         table = FlexTable([
-            Column('NAME', max_width = 25),
+            Column('NAME', max_width=25),
         ])
 
         table.add_rows([
@@ -468,7 +489,7 @@ class TestA(BaseTestCase):
 
     def test_custom_width_clipping(self):
         max_length = self.faker.random_int(10, 20)
-        long_name = self.faker.sentence(nb_words = max_length)
+        long_name = self.faker.sentence(nb_words=max_length)
 
         clipped = long_name[:max_length - 1] + '…'
 
@@ -492,3 +513,63 @@ class TestA(BaseTestCase):
             '╚═{0}═╝'.format('═' * max_length),
         ]
         assert expected == rendered_table
+
+    # * ****************************************************************************************** *
+
+    def test_no_data_label(self):
+        table = FlexTable(['ID', Column('SCORE')])
+        table.set_no_data_label('FOO BAR')
+
+        rendered_table = self.render_table(table)
+
+        expected = [
+            '╔════╦═══════╗',
+            '║ ID ║ SCORE ║',
+            '╠════╬═══════╣',
+            '║  FOO BAR   ║',
+            '╚════╩═══════╝',
+        ]
+
+        self.assertEquals(expected, rendered_table)
+
+    def test_custom_no_data_label(self):
+        table = FlexTable(['ID', Column('SCORE')])
+        table.set_no_data_label('FOO BAR')
+
+        rendered_table = self.render_table(table)
+
+        expected = [
+            '╔════╦═══════╗',
+            '║ ID ║ SCORE ║',
+            '╠════╬═══════╣',
+            '║  FOO BAR   ║',
+            '╚════╩═══════╝',
+        ]
+
+        self.assertEquals(expected, rendered_table)
+
+    # * ****************************************************************************************** *
+
+    def test_separator(self):
+        table = FlexTable(['ID', Column('SCORE')])
+        table.add_row([
+            '10', '123',
+        ])
+        table.add_separator()
+        table.add_row([
+            '31', '5875',
+        ])
+
+        rendered_table = self.render_table(table)
+
+        expected = [
+            '╔════╦═══════╗',
+            '║ ID ║ SCORE ║',
+            '╠════╬═══════╣',
+            '║ 10 ║ 123   ║',
+            '╠════╬═══════╣',
+            '║ 31 ║ 5875  ║',
+            '╚════╩═══════╝',
+        ]
+
+        self.assertEquals(expected, rendered_table)

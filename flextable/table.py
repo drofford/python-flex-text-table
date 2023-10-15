@@ -18,6 +18,7 @@ from flextable.renderers.contracts import RendererContract
 from flextable.renderers.fancy_renderer import FancyRenderer
 from flextable.row import Row
 from flextable.rows_container import RowsContainer
+from flextable.separator import Separator
 
 
 class FlexTable(object):
@@ -38,6 +39,7 @@ class FlexTable(object):
         self._columns = None
         self._header = None
         self._rows = None
+        self._no_data_label = 'NO DATA'
 
         self.init(header_columns, rows)
 
@@ -234,6 +236,8 @@ class FlexTable(object):
             row = self.add_row_from_list(src_row, column_keys)
         elif isinstance(src_row, dict):
             row = self.add_row_from_dict(src_row, column_keys)
+        elif isinstance(src_row, Separator):
+            row = src_row
         else:
             row.add_cells(src_row)
 
@@ -307,6 +311,14 @@ class FlexTable(object):
         for row in rows:
             self.add_row(row)
 
+        return self
+
+    def add_separator(self) -> 'FlexTable':
+        """
+        Adds a separator row to the table. The separator row is rendered as a horizontal line
+        separating the table header from the table body.
+        """
+        self.add_row(Separator())
         return self
 
     # * ****************************************************************************************** *
@@ -430,6 +442,23 @@ class FlexTable(object):
         """
         self.columns[column_key].visible = visible
         return self
+
+    # * ****************************************************************************************** *
+
+    def get_no_data_label(self) -> str:
+        """
+        Returns the label to be displayed when there are no rows in the table.
+        """
+        return self._no_data_label
+
+    def set_no_data_label(self, label: str) -> 'FlexTable':
+        """
+        Sets the label to be displayed when there are no rows in the table.
+        """
+        self._no_data_label = label
+        return self
+
+    # * ****************************************************************************************** *
 
     @property
     def visible_column_count(self) -> int:
