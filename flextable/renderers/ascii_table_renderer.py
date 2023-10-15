@@ -254,8 +254,6 @@ class AsciiTableRenderer(RendererContract, ABC):
             if not column.visible:
                 continue
 
-            segment = self.SEGMENT_ROW_LEFT
-
             if is_first_row:
                 segment = self.SEGMENT_FIRST_ROW_LEFT
             elif is_last_row:
