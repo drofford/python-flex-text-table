@@ -532,7 +532,6 @@ class TestA(BaseTestCase):
 
         self.assertEquals(expected, rendered_table)
 
-
     def test_custom_no_data_label(self):
         table = FlexTable(['ID', Column('SCORE')])
         table.set_no_data_label('FOO BAR')
@@ -544,6 +543,32 @@ class TestA(BaseTestCase):
             '║ ID ║ SCORE ║',
             '╠════╬═══════╣',
             '║  FOO BAR   ║',
+            '╚════╩═══════╝',
+        ]
+
+        self.assertEquals(expected, rendered_table)
+
+    # * ****************************************************************************************** *
+
+    def test_separator(self):
+        table = FlexTable(['ID', Column('SCORE')])
+        table.add_row([
+            '10', '123',
+        ])
+        table.add_separator()
+        table.add_row([
+            '31', '5875',
+        ])
+
+        rendered_table = self.render_table(table)
+
+        expected = [
+            '╔════╦═══════╗',
+            '║ ID ║ SCORE ║',
+            '╠════╬═══════╣',
+            '║ 10 ║ 123   ║',
+            '╠════╬═══════╣',
+            '║ 31 ║ 5875  ║',
             '╚════╩═══════╝',
         ]
 

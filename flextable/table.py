@@ -236,6 +236,8 @@ class FlexTable(object):
             row = self.add_row_from_list(src_row, column_keys)
         elif isinstance(src_row, dict):
             row = self.add_row_from_dict(src_row, column_keys)
+        elif isinstance(src_row, Separator):
+            row = src_row
         else:
             row.add_cells(src_row)
 
@@ -311,7 +313,7 @@ class FlexTable(object):
 
         return self
 
-    def add_separaotr_row(self) -> 'FlexTable':
+    def add_separator(self) -> 'FlexTable':
         """
         Adds a separator row to the table. The separator row is rendered as a horizontal line
         separating the table header from the table body.

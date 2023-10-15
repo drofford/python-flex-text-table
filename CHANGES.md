@@ -18,6 +18,7 @@ Fast and flexible Python library for text tables.
   * Added option to control column's title visibility.
   * Added `set_no_data_label()` to override default `NO DATA` shown when rendering empty table.
   * Fixed rendering of middle row separator when 'NO DATA' label is used
+  * Added support for manually adding separator rows (`add_separator()` or `Separator` row class).
 
 
 * 2.6.0 (2023-05-05)

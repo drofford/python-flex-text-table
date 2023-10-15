@@ -13,6 +13,7 @@ from typing import List, Union, Optional
 
 from flextable.align import Align
 from flextable.cell import Cell
+from flextable.separator import Separator
 from flextable.columns_container import ColumnsContainer
 from flextable.exceptions import NoVisibleColumnsError
 from flextable.renderers.context import RendererContext
@@ -45,7 +46,10 @@ class AsciiTableRenderer(RendererContract, ABC):
 
         if table.row_count > 0:
             for row in table.rows.values():
-                result.append(self.render_data_row(ctx, row))
+                if isinstance(row, Separator):
+                    result.append(self.render_separator(ctx))
+                else:
+                    result.append(self.render_data_row(ctx, row))
                 ctx.inc_rendered_row_idx()
                 ctx.inc_table_row_idx()
         else:
