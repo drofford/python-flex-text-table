@@ -20,7 +20,6 @@ Fast and flexible Python library for text tables.
   * Fixed rendering of middle row separator when 'NO DATA' label is used
   * Added support for manually adding separator rows (`add_separator()` or `Separator` row class).
 
-
 * 2.6.0 (2023-05-05)
   * Fixed column container not updating width of columns correctly.
   * Simplified header rendering code.
@@ -28,7 +27,6 @@ Fast and flexible Python library for text tables.
   * Added more tests.
   * Updated docs.
   * `FlexTable` c'tor now also accepts rows for instant initialization.
-
 
 * 2.5.0 (2023-04-11)
   * Initial public release.
