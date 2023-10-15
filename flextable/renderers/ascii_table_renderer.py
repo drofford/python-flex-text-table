@@ -49,7 +49,7 @@ class AsciiTableRenderer(RendererContract, ABC):
                 ctx.inc_rendered_row_idx()
                 ctx.inc_table_row_idx()
         else:
-            result.append(self.render_no_data_row(ctx))
+            result.append(self.render_no_data_row(ctx, table.get_no_data_label()))
             ctx.inc_rendered_row_idx()
 
         result.append(self.render_bottom_separator(ctx))
@@ -63,7 +63,7 @@ class AsciiTableRenderer(RendererContract, ABC):
     ROW_FRAME_CENTER: str = '?'
     ROW_FRAME_RIGHT: str = '?'
 
-    def render_no_data_row(self, ctx: RendererContext) -> str:
+    def render_no_data_row(self, ctx: RendererContext, label: str = 'NO DATA') -> str:
         """
         Renders a row of text that indicates that there are no data rows available for rendering.
         The label string "NO DATA" is centered and surrounded by the row frame characters, which
@@ -71,9 +71,9 @@ class AsciiTableRenderer(RendererContract, ABC):
 
         :param RendererContext ctx: Rendering context that holds information about the current
                                     rendering process.
+        :param str label: Label to render.
         :return: List of string representation of table without data rows.
         """
-        label = 'NO DATA'
         total_table_width = self.get_table_total_width(ctx.table)
         if len(label) > total_table_width:
             label = label[:total_table_width - 3] + '…'
@@ -229,8 +229,22 @@ class AsciiTableRenderer(RendererContract, ABC):
         columns = ctx.table.columns
         result = ''
 
-        is_first_row = ctx.is_first_visible_row()
-        is_last_row = ctx.is_last_visible_row()
+        # check if table is empty (otherwise is_last_visible_row() will return true as row 0 is the
+        # last of 0 row dataset, rendering last closing table row characters instead of first
+        # row characters) which is visible for any non-symetric blocks (i.e. MsDos style blocks)
+        if ctx.table.row_count > 0:
+            if ctx.is_last_visible_row():
+                is_first_row = False
+                is_last_row = True
+            elif ctx.is_first_visible_row():
+                is_first_row = True
+                is_last_row = False
+            else:
+                is_first_row = False
+                is_last_row = False
+        else:
+            is_first_row = False
+            is_last_row = False
 
         for column_key, column in columns.items():
             if not column.visible:
@@ -242,6 +256,8 @@ class AsciiTableRenderer(RendererContract, ABC):
                 segment = self.SEGMENT_FIRST_ROW_LEFT
             elif is_last_row:
                 segment = self.SEGMENT_LAST_ROW_LEFT
+            else:
+                segment = self.SEGMENT_ROW_LEFT
 
             if ctx.is_first_visible_column(column_key):
                 result += segment

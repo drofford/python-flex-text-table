@@ -513,3 +513,38 @@ class TestA(BaseTestCase):
             '╚═{0}═╝'.format('═' * max_length),
         ]
         assert expected == rendered_table
+
+    # * ****************************************************************************************** *
+
+    def test_no_data_label(self):
+        table = FlexTable(['ID', Column('SCORE')])
+        table.set_no_data_label('FOO BAR')
+
+        rendered_table = self.render_table(table)
+
+        expected = [
+            '╔════╦═══════╗',
+            '║ ID ║ SCORE ║',
+            '╠════╬═══════╣',
+            '║  FOO BAR   ║',
+            '╚════╩═══════╝',
+        ]
+
+        self.assertEquals(expected, rendered_table)
+
+
+    def test_custom_no_data_label(self):
+        table = FlexTable(['ID', Column('SCORE')])
+        table.set_no_data_label('FOO BAR')
+
+        rendered_table = self.render_table(table)
+
+        expected = [
+            '╔════╦═══════╗',
+            '║ ID ║ SCORE ║',
+            '╠════╬═══════╣',
+            '║  FOO BAR   ║',
+            '╚════╩═══════╝',
+        ]
+
+        self.assertEquals(expected, rendered_table)

@@ -39,6 +39,7 @@ class FlexTable(object):
         self._columns = None
         self._header = None
         self._rows = None
+        self._no_data_label = 'NO DATA'
 
         self.init(header_columns, rows)
 
@@ -439,6 +440,23 @@ class FlexTable(object):
         """
         self.columns[column_key].visible = visible
         return self
+
+    # * ****************************************************************************************** *
+
+    def get_no_data_label(self) -> str:
+        """
+        Returns the label to be displayed when there are no rows in the table.
+        """
+        return self._no_data_label
+
+    def set_no_data_label(self, label: str) -> 'FlexTable':
+        """
+        Sets the label to be displayed when there are no rows in the table.
+        """
+        self._no_data_label = label
+        return self
+
+    # * ****************************************************************************************** *
 
     @property
     def visible_column_count(self) -> int:
