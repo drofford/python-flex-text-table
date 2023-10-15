@@ -14,6 +14,9 @@ Fast and flexible Python library for text tables.
 
 # Changes
 
+* dev
+  * Added option to control column's title visibility.
+
 * 2.6.0 (2023-05-05)
   * Fixed column container not updating width of columns correctly.
   * Simplified header rendering code.

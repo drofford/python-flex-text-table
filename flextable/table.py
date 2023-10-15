@@ -18,6 +18,7 @@ from flextable.renderers.contracts import RendererContract
 from flextable.renderers.fancy_renderer import FancyRenderer
 from flextable.row import Row
 from flextable.rows_container import RowsContainer
+from flextable.separator import Separator
 
 
 class FlexTable(object):
@@ -307,6 +308,14 @@ class FlexTable(object):
         for row in rows:
             self.add_row(row)
 
+        return self
+
+    def add_separaotr_row(self) -> 'FlexTable':
+        """
+        Adds a separator row to the table. The separator row is rendered as a horizontal line
+        separating the table header from the table body.
+        """
+        self.add_row(Separator())
         return self
 
     # * ****************************************************************************************** *

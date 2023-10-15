@@ -28,7 +28,8 @@ class Column(object):
                  max_width: int = 0,
                  cell_align: Optional[Align] = None,
                  title_align: Optional[Align] = None,
-                 visible: bool = True):
+                 visible: bool = True,
+                 title_visible: bool = True):
         self._title: str = title
         self._max_width: int = max_width
 
@@ -37,6 +38,7 @@ class Column(object):
         self._title_align: Align = title_align if title_align is not None else Align.AUTO
 
         self._visible: bool = visible
+        self._title_visible: bool = title_visible
 
     # * ****************************************************************************************** *
 
@@ -106,3 +108,11 @@ class Column(object):
     @visible.setter
     def visible(self, value: bool) -> None:
         self._visible = value
+
+    @property
+    def title_visible(self) -> bool:
+        return self._title_visible
+
+    @title_visible.setter
+    def title_visible(self, value: bool) -> None:
+        self._title_visible = value

@@ -147,7 +147,8 @@ class AsciiTableRenderer(RendererContract, ABC):
             if ctx.is_first_visible_column(column_key):
                 result += self.ROW_FRAME_LEFT
 
-            result += self.pad(columns, column_key, column.title, column.title_align)
+            title = column.title if column.title_visible else ''
+            result += self.pad(columns, column_key, title, column.title_align)
             result += self.ROW_FRAME_RIGHT if ctx.is_last_visible_column(
                 column_key) else self.ROW_FRAME_CENTER
 
