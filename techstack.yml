@@ -1,0 +1,79 @@
+repo_name: drofford/python-flex-text-table
+report_id: 5bb41933b84988c4094628a664015c60
+version: 0.1
+repo_type: Public
+timestamp: '2024-07-26T14:17:02+00:00'
+requested_by: MarcinOrlowski
+provider: github
+branch: master
+detected_tools_count: 6
+tools:
+- name: Python
+  description: A clear and powerful object-oriented programming language, comparable
+    to Perl, Ruby, Scheme, or Java.
+  website_url: https://www.python.org
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/993/pUBY5pVj.png
+  detection_source_url: https://github.com/drofford/python-flex-text-table
+  detection_source: Repo Metadata
+- name: Codecov
+  description: Hosted coverage reports with awesome features to enhance your CI workflow
+  website_url: https://codecov.io/
+  open_source: false
+  hosted_saas: true
+  category: Build, Test, Deploy
+  sub_category: Code Coverage
+  image_url: https://img.stackshare.io/service/2673/Codecov_Mark_Circle_Pink.png
+  detection_source_url: https://github.com/drofford/python-flex-text-table/blob/master/.codecov.yml
+  detection_source: ".codecov.yml"
+  last_updated_by: Marcin Orlowski
+  last_updated_on: 2023-04-11 20:36:43.000000000 Z
+- name: Git
+  description: Fast, scalable, distributed revision control system
+  website_url: http://git-scm.com/
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Version Control System
+  image_url: https://img.stackshare.io/service/1046/git.png
+  detection_source_url: https://github.com/drofford/python-flex-text-table
+  detection_source: Repo Metadata
+- name: GitHub Actions
+  description: Automate your workflow from idea to production
+  website_url: https://github.com/features/actions
+  open_source: false
+  hosted_saas: true
+  category: Build, Test, Deploy
+  sub_category: Continuous Integration
+  image_url: https://img.stackshare.io/service/11563/actions.png
+  detection_source_url: https://github.com/drofford/python-flex-text-table/blob/master/.github/workflows/codecov.yml
+  detection_source: ".github/workflows/codecov.yml"
+  last_updated_by: Marcin Orlowski
+  last_updated_on: 2023-04-12 13:46:48.000000000 Z
+- name: pytest
+  description: A full-featured Python testing tool to help you write better programs
+  website_url: http://pytest.org/latest/
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Testing Frameworks
+  image_url: https://img.stackshare.io/service/4586/Lu99Qe0Z_400x400.png
+  detection_source_url: https://github.com/drofford/python-flex-text-table/blob/master/requirements-dev.txt
+  detection_source: requirements-dev.txt
+  last_updated_by: Marcin Orlowski
+  last_updated_on: 2023-04-11 20:36:43.000000000 Z
+- name: Shell
+  description: A shell is a text-based terminal, used for manipulating programs and
+    files. Shell scripts typically manage program execution.
+  website_url: https://en.wikipedia.org/wiki/Shell_script
+  open_source: false
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/4631/default_c2062d40130562bdc836c13dbca02d318205a962.png
+  detection_source_url: https://github.com/drofford/python-flex-text-table
+  detection_source: Repo Metadata
